@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="utf-8" />
+	<title>Your To-Do List</title>
+	<!-- <link rel="stylesheet" href="style/main.css" type="text/css" /> -->
+</h:head>
+<h:body>
+
+	<h1></h1>
+
+	<p>Here is the lists you entered:</p>
+	
+	<h:dataTable value="#{bean.userList}" var="l"
+		border="1">
+
+		<h:column>
+			<!-- column header -->
+			<f:facet name="header">List ID</f:facet>
+			<!-- row record -->
+    				#{l.listId}
+    			</h:column>
+
+		<h:column>
+			<f:facet name="header">Description</f:facet>
+    				#{l.trackDescription}
+    			</h:column>
+
+		<h:column>
+			<f:facet name="header">Due Date</f:facet>
+    				#{l.dueDate}
+    			</h:column>
+
+		 <h:column>
+			<f:facet name="header">Status</f:facet>
+    			#{l.statusId}
+    			</h:column> 
+
+	</h:dataTable>
+<br />
+<br />
+	<h:form>
+		<h:commandButton id="newList" action="newList?faces-redirect=true"
+			value="Create New List" />
+	</h:form>
+</h:body>
+</html>

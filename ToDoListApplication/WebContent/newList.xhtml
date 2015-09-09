@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="utf-8" />
+	<title>New Item</title>
+	<link rel="stylesheet" href="style/main.css" type="text/css" />
+</h:head>
+<h:body>
+	<h1>New User</h1>
+	<p>Enter your To do Item</p>
+
+	<h:form>
+		<label class="pad_top">Track Description:</label>
+		<h:inputText id="track" required="true"
+			value="#{bean.newItem.trackDescription}"
+			requiredMessage="An description is required" />
+		<h:message showSummary="true" showDetail="false" for="track"
+			class="error" />
+		<br />
+
+		<label class="pad_top">Due Date:</label>
+		<h:inputText id="dueDate" required="true"
+			value="#{bean.newItem.dueDate}"
+			requiredMessage="A due date is required" />
+		<h:message showSummary="true" showDetail="false" for="dueDate"
+			class="error" />
+		<br />
+
+		<label class="pad_top">Status:</label>
+		<h:inputText id="status" required="true"
+			value="#{bean.newItem.statusId}"
+			requiredMessage="A status  is required" />
+		<h:message showSummary="true" showDetail="false" for="lastName"
+			class="error" />
+		<br />
+		<label class="pad_top">Priority:</label>
+		<h:inputText id="priority" required="true"
+			value="#{bean.newItem.priority}"
+			requiredMessage="required.">
+		
+		</h:inputText>
+
+		<br />
+
+		<label>&nbsp;</label>
+
+		<h:commandButton id="save" action="index?faces-redirect=true"
+			value="Save" />
+
+	</h:form>
+</h:body>
+</html>

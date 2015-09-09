@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="utf-8" />
+	<title>New User</title>
+	<link rel="stylesheet" href="style/main.css" type="text/css" />
+</h:head>
+<h:body>
+	<h1>New User</h1>
+	<p>Enter your details below</p>
+
+	<h:form>
+		<label class="pad_top">Email:</label>
+		<h:inputText id="email" required="true"
+			value="#{bean.user.email}"
+			requiredMessage="An email address is required" />
+		<h:message showSummary="true" showDetail="false" for="email"
+			class="error" />
+		<br />
+
+		<label class="pad_top">First Name:</label>
+		<h:inputText id="firstName" required="true"
+			value="#{bean.user.firstname}"
+			requiredMessage="A first name is required" />
+		<h:message showSummary="true" showDetail="false" for="firstName"
+			class="error" />
+		<br />
+
+		<label class="pad_top">Last Name:</label>
+		<h:inputText id="lastName" required="true"
+			value="#{bean.user.lastname}"
+			requiredMessage="A last name is required" />
+		<h:message showSummary="true" showDetail="false" for="lastName"
+			class="error" />
+		<br />
+		<label class="pad_top">Birth Year:</label>
+		<h:inputText id="birthYear" required="true"
+			value="#{bean.user.birthyear}"
+			requiredMessage="A birth year is required."
+			validatorMessage="A valid 4-digit birth year is required">
+		<f:validateLongRange minimum="1900" maximum="2014" />
+		</h:inputText>
+		<h:message showSummary="true" showDetail="false" for="birthYear"
+			class="error" />
+		<br />
+
+		<label>&nbsp;</label>
+		<h:commandButton id="submit" action="#{bean.checkUser}"
+			value="Register" class="margin_left"></h:commandButton>
+
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="utf-8" />
+	<title>To DO bean Application</title>
+	<link rel="stylesheet" href="style/main.css" type="text/css" />
+</h:head>
+<h:body>
+	<h1>To Do bean Application</h1>
+	<p>Please provide user name to create a To-do bean</p>
+<!-- 	<c:if test="${emailbean.message != null}">
+		<p class="error">#{emailbean.message}</p>
+	</c:if> -->
+	<h:form>
+		<label class="pad_top">Email:</label>
+		<h:inputText id="email" required="true"
+			value="#{bean.user.email}"
+			requiredMessage="An email address is required" />
+		<h:message showSummary="true" showDetail="false" for="email"
+			class="error" />
+
+		<br />
+		<br />
+		
+
+		<label>&nbsp;</label>
+		<h:commandButton id="submit" action="#{bean.checkUser}"
+			value="Log In" class="margin_left"></h:commandButton>
+
+	</h:form>
+</h:body>
+</html>
