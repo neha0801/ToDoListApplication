@@ -32,26 +32,37 @@
 		<br />
 
 		<label class="pad_top">Status:</label>
-		<h:inputText id="status" required="true"
-			value="#{bean.statusStr}"
+		
+<!-- 		<h:inputText id="status" required="true" value="#{bean.statusStr}"
 			requiredMessage="A status  is required" />
 		<h:message showSummary="true" showDetail="false" for="lastName"
 			class="error" />
-		<br />
+		<br /> -->
+
+		<h:selectOneMenu value="#{bean.statusStr}">
+			<f:selectItem itemValue="Completed" itemLabel="Completed" />
+			<f:selectItem itemValue="In Progress" itemLabel="In Progress" />
+			<f:selectItem itemValue="On Hold" itemLabel="On Hold" />
+		</h:selectOneMenu>
 		<label class="pad_top">Priority:</label>
 		<h:inputText id="priority" required="true"
-			value="#{bean.newItem.priority}"
-			requiredMessage="required.">
-		
+			value="#{bean.newItem.priority}" requiredMessage="required.">
+
 		</h:inputText>
 
 		<br />
 
 		<label>&nbsp;</label>
-<h:commandButton id="save" action="#{bean.insertList}"
-			value="Save" />
+		<h:commandButton id="save" action="#{bean.insertList}" value="Save" />
 
+		<br />
+		<br />
+		
 
+	</h:form>
+	<h:form>
+		<h:commandButton id="return" action="index?faces-redirect=true"
+			value="Return" />
 	</h:form>
 </h:body>
 </html>

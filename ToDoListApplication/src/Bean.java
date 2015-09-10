@@ -44,10 +44,21 @@ public class Bean {
             sessionMap.put("user", user);
             return "ShowList";
         } else {
-        	message = "This email address already exists. " +
-                    "Please enter another email address";
-            UserDB.insert(user);
             return "newUser";
+        }
+    }
+    
+    public String insertUser() {
+        if (UserDB.emailExists(user.getEmail())) {
+        	this.user= UserDB.selectUser(user.getEmail());        	
+            message = "This email address already exists. " +
+                    "Please enter another email address";
+            sessionMap = externalContext.getSessionMap();
+            sessionMap.put("user", user);
+            return "newUser";
+        } else {
+            UserDB.insert(user);
+            return "index";
         }
     }
     

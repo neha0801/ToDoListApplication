@@ -13,7 +13,9 @@
 <h:body>
 	<h1>New User</h1>
 	<p>Enter your details below</p>
-
+	<c:if test="${bean.message != null}">
+		<p class="error">#{bean.message}</p>
+	</c:if>
 	<h:form>
 		<label class="pad_top">Email:</label>
 		<h:inputText id="email" required="true"
@@ -50,9 +52,16 @@
 		<br />
 
 		<label>&nbsp;</label>
-		<h:commandButton id="submit" action="#{bean.checkUser}"
+		<h:commandButton id="submit" action="#{bean.insertUser}"
 			value="Register" class="margin_left"></h:commandButton>
 
+		<br />
+		<br />
+		
+	</h:form>
+			<h:form>
+		<h:commandButton id="return" action="index?faces-redirect=true"
+			value="Return" />
 	</h:form>
 </h:body>
 </html>

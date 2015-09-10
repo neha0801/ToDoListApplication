@@ -8,7 +8,7 @@
 <h:head>
 	<meta charset="utf-8" />
 	<title>Your To-Do List</title>
-	<!-- <link rel="stylesheet" href="style/main.css" type="text/css" /> -->
+	<link rel="stylesheet" href="style/main.css" type="text/css" />
 </h:head>
 <h:body>
 
@@ -38,7 +38,7 @@
 
 		 <h:column>
 			<f:facet name="header">Status</f:facet>
-    			#{l.status.statusId}
+    			#{l.status.statusMessage}
     			</h:column> 
 
 	</h:dataTable>
@@ -47,6 +47,14 @@
 	<h:form>
 		<h:commandButton id="newList" action="newList?faces-redirect=true"
 			value="Create New List" />
+	</h:form>
+	
+		<br />
+		<br />
+		
+		<h:form>
+		<h:commandButton id="return" action="index?faces-redirect=true"
+			value="Return" />
 	</h:form>
 </h:body>
 </html>
