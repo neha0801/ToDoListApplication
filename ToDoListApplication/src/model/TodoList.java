@@ -2,8 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -20,25 +18,18 @@ public class TodoList implements Serializable {
 	@Column(name="LIST_ID")
 	private int listId;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="DATE_COMPLETED")
-	private Date dateCompleted;
-
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="DUE_DATE")
-	private Date dueDate;
+	private String dueDate;
 
 	private String priority;
-
-	@Column(name="STATUS_ID")
-	private int statusId;
 
 	@Column(name="TRACK_DESCRIPTION")
 	private String trackDescription;
 
 	//bi-directional many-to-one association to Status
-	@OneToMany(mappedBy="todoList")
-	private List<Status> statuses;
+	@ManyToOne
+	@JoinColumn(name="STATUS_ID")
+	private Status status;
 
 	//bi-directional many-to-one association to User1
 	@ManyToOne
@@ -56,19 +47,11 @@ public class TodoList implements Serializable {
 		this.listId = listId;
 	}
 
-	public Date getDateCompleted() {
-		return this.dateCompleted;
-	}
-
-	public void setDateCompleted(Date dateCompleted) {
-		this.dateCompleted = dateCompleted;
-	}
-
-	public Date getDueDate() {
+	public String getDueDate() {
 		return this.dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
@@ -80,14 +63,6 @@ public class TodoList implements Serializable {
 		this.priority = priority;
 	}
 
-	public int getStatusId() {
-		return this.statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
-	}
-
 	public String getTrackDescription() {
 		return this.trackDescription;
 	}
@@ -96,26 +71,12 @@ public class TodoList implements Serializable {
 		this.trackDescription = trackDescription;
 	}
 
-	public List<Status> getStatuses() {
-		return this.statuses;
+	public Status getStatus() {
+		return this.status;
 	}
 
-	public void setStatuses(List<Status> statuses) {
-		this.statuses = statuses;
-	}
-
-	public Status addStatus(Status status) {
-		getStatuses().add(status);
-		status.setTodoList(this);
-
-		return status;
-	}
-
-	public Status removeStatus(Status status) {
-		getStatuses().remove(status);
-		status.setTodoList(null);
-
-		return status;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public User1 getUser1() {

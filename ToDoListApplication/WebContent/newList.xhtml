@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="style/main.css" type="text/css" />
 </h:head>
 <h:body>
-	<h1>New User</h1>
+	<h1>New Item</h1>
 	<p>Enter your To do Item</p>
 
 	<h:form>
@@ -33,7 +33,7 @@
 
 		<label class="pad_top">Status:</label>
 		<h:inputText id="status" required="true"
-			value="#{bean.newItem.statusId}"
+			value="#{bean.statusStr}"
 			requiredMessage="A status  is required" />
 		<h:message showSummary="true" showDetail="false" for="lastName"
 			class="error" />
@@ -48,9 +48,9 @@
 		<br />
 
 		<label>&nbsp;</label>
-
-		<h:commandButton id="save" action="index?faces-redirect=true"
+<h:commandButton id="save" action="#{bean.insertList}"
 			value="Save" />
+
 
 	</h:form>
 </h:body>

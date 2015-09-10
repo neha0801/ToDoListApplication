@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import model.*;
 
@@ -13,7 +16,11 @@ public class Bean {
     private User1 user;
     private List<TodoList> userList;
     private TodoList newItem;
-    
+    private Status status;
+    private String statusStr;
+    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+    Map<String, Object> sessionMap;
+
     
     private String message;
     
@@ -29,8 +36,12 @@ public class Bean {
     
     public String checkUser() {
         if (UserDB.emailExists(user.getEmail())) {
+        	this.user= UserDB.selectUser(user.getEmail());
+        	
             System.out.println("User logged in " + user.getEmail());
             showList();
+            sessionMap = externalContext.getSessionMap();
+            sessionMap.put("user", user);
             return "ShowList";
         } else {
         	message = "This email address already exists. " +
@@ -41,7 +52,15 @@ public class Bean {
     }
     
     public String insertList() {
-    	this.newItem.setUser1(user);
+    	System.out.println(user.getFirstname());
+    	sessionMap = externalContext.getSessionMap();
+    	user = (User1) sessionMap.get("user");
+    	this.newItem.setUser1(user);    
+    	System.out.println(statusStr);
+    	status = StatusDB.getStatusObj(this.getStatusStr());
+    	System.out.println("Message " + status.getStatusMessage());
+    	System.out.println(user.getFirstname());
+    	this.newItem.setStatus(status);
     	ToDoListDB.insert(newItem);
         return "index";
 
@@ -89,5 +108,17 @@ public class Bean {
 		this.newItem = newItem;
 	}
 
+	public String getStatusStr() {
+		return statusStr;
+	}
 
+	public void setStatusStr(String statusStr) {
+		this.statusStr = statusStr;
+	}
+
+	public Status getStatusObj(String statusStr){
+		
+		return status;
+		
+	}
 }

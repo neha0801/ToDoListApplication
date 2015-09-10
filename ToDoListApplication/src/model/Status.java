@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 
 /**
  * The persistent class for the STATUS database table.
@@ -23,14 +25,8 @@ public class Status implements Serializable {
 	private String statusMessage;
 
 	//bi-directional many-to-one association to TodoList
-	@ManyToOne
-	@JoinColumn(name="LIST_ID")
-	private TodoList todoList;
-
-	//bi-directional many-to-one association to User1
-	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private User1 user1;
+	@OneToMany(mappedBy="status")
+	private List<TodoList> todoLists;
 
 	public Status() {
 	}
@@ -51,20 +47,27 @@ public class Status implements Serializable {
 		this.statusMessage = statusMessage;
 	}
 
-	public TodoList getTodoList() {
-		return this.todoList;
+	public List<TodoList> getTodoLists() {
+		return this.todoLists;
 	}
 
-	public void setTodoList(TodoList todoList) {
-		this.todoList = todoList;
+	public void setTodoLists(List<TodoList> todoLists) {
+		this.todoLists = todoLists;
 	}
 
-	public User1 getUser1() {
-		return this.user1;
+	public TodoList addTodoList(TodoList todoList) {
+		getTodoLists().add(todoList);
+		todoList.setStatus(this);
+
+		return todoList;
 	}
 
-	public void setUser1(User1 user1) {
-		this.user1 = user1;
+	public TodoList removeTodoList(TodoList todoList) {
+		getTodoLists().remove(todoList);
+		todoList.setStatus(null);
+
+		return todoList;
 	}
+	
 
 }

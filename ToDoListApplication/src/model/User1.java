@@ -1,9 +1,7 @@
 package model;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 import java.util.List;
 
 
@@ -27,10 +25,6 @@ public class User1 implements Serializable {
 	private String firstname;
 
 	private String lastname;
-
-	//bi-directional many-to-one association to Status
-	@OneToMany(mappedBy="user1")
-	private List<Status> statuses;
 
 	//bi-directional many-to-one association to TodoList
 	@OneToMany(mappedBy="user1")
@@ -77,28 +71,6 @@ public class User1 implements Serializable {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}
-
-	public List<Status> getStatuses() {
-		return this.statuses;
-	}
-
-	public void setStatuses(List<Status> statuses) {
-		this.statuses = statuses;
-	}
-
-	public Status addStatus(Status status) {
-		getStatuses().add(status);
-		status.setUser1(this);
-
-		return status;
-	}
-
-	public Status removeStatus(Status status) {
-		getStatuses().remove(status);
-		status.setUser1(null);
-
-		return status;
 	}
 
 	public List<TodoList> getTodoLists() {
